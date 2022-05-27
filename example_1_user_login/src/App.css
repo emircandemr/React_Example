@@ -1,0 +1,14 @@
+.custom-page{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e1b12c;
+}
+
+.login_header{
+  color: #e1b12c;
+  font-weight: bolder;
+  letter-spacing: 5px;
+}
