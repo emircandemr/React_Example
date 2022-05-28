@@ -1,0 +1,27 @@
+.card{
+    width:250px;
+    height: 300px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color:#222831 ;
+    color: #f98903;
+    border: 1px solid ;
+    border-color: #eaeaea;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-right: 40px;
+    margin-top: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.card:hover{
+    background-color:#212121 ;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+
+
+.card-body{
+    color: #f98903;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}

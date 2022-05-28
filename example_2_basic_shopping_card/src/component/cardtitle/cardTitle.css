@@ -1,0 +1,9 @@
+.card-title{
+    font-weight: bolder;
+    font-size: 14px;
+    color: #eaeaea;
+    margin-bottom: 10px;
+    text-align: center;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
