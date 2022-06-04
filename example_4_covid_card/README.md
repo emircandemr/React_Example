@@ -1,5 +1,4 @@
 
-Live:
 
 ![Ekran görüntüsü 2022-06-04 223942](https://user-images.githubusercontent.com/72731296/172023213-1b4ba233-fd36-4e21-a3c0-40b08a528382.png)
 <br>
