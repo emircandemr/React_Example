@@ -22,6 +22,9 @@ const Header = ({activeTitle,onMenuChange}) => {
             {
                 item:"Kıtalara Göre Korona Değerleri",
                 value:3
+            },            {
+                item:"Korona Haberleri",
+                value:4
             }
     ]
     )

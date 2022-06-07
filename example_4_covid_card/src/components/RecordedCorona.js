@@ -6,7 +6,7 @@ import { API_TOKEN, API_URL } from "../const";
 const RecordedCorona = () => {
     
     const [loading,setLoading] = useState(false)
-    const [data, setData] = useState(null)
+    const [data, setData] = useState([])
 
     const fetchData = async () => {
         setLoading(true)

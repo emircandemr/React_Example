@@ -5,6 +5,7 @@ import CoronaForCountry from './components/coronaFormCountry';
 import Header from './components/header';
 import RecordedCorona from './components/RecordedCorona';
 import CoronaForContinent from './components/coronaForContinent';
+import CoronaNews from './components/coronaNews';
 
 function App() {
 
@@ -27,6 +28,10 @@ function App() {
         {key ===3 && 
         <div>
           <CoronaForContinent/>
+        </div> }
+        {key ===4 && 
+        <div>
+          <CoronaNews/>
         </div> }
         
 
