@@ -1,0 +1,31 @@
+
+.content-footer{
+
+    @apply flex h-full justify-between items-center text-base cursor-pointer p-2
+
+}
+
+
+
+.left-item{
+    @apply text-green-600 font-semibold     
+}
+
+.left-item:hover{
+    @apply text-red-800
+}
+.menu-item:hover{
+    @apply text-red-800
+}.right-item:hover{
+    @apply text-red-800
+}
+.menu-item{
+    @apply text-gray-900 font-semibold
+}
+
+.right-item{
+    @apply text-sky-800 font-semibold
+}
+.active{
+    @apply text-blue-800 font-extrabold text-lg
+}

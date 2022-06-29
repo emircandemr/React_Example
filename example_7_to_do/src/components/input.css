@@ -1,0 +1,10 @@
+
+
+.input-wrapper{
+    @apply w-full mt-4;
+
+}
+
+.input-wrapper input{
+    @apply w-full rounded-lg shadow-md shadow-slate-600 focus:shadow-xl focus:shadow-slate-900 outline-none border-none p-3 text-gray-700 font-semibold;
+}
