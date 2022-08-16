@@ -28,7 +28,7 @@ function Todo() {
     return (
     <div>
 
-        <input value={text} onChange={(e) => {setText(e.target.value)}} />
+        <input value={text} aria-label="todo-input" onChange={(e) => {setText(e.target.value)}} />
         <button onClick={() => {addItem()}}>Add</button>
         <br></br>
 
