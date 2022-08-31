@@ -3,18 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import "antd/dist/antd.css"
 import App from './App';
-import MainLayout from './layout/Main/MainLayout';
-import Auth from './layout/Auth/Auth';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-
-    <Auth>
-      <App />
-
-    </Auth>
+    <BrowserRouter>
+       <App/>
+    </BrowserRouter>
     
-  </React.StrictMode>
 );
 

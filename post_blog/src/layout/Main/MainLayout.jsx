@@ -11,9 +11,9 @@ function MainLayout(props) {
         <Layout style={{marginLeft:"200px"}}>
             <AppHeader/>
             <AppContent>
+            {props.children}
               
             </AppContent>
-            {props.children}
         </Layout>
     </Layout>
   )
