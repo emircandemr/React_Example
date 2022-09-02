@@ -3,11 +3,105 @@ import { Card ,Form,Row,Col, Input, Select, DatePicker, Button} from 'antd'
 import Logo from "../../assets/logos/logo.png"
 import "./SignUp.css"
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { Request } from '../../request/Request'
 
 const SignUp = () => {
 
   const navigate = useNavigate()
-  const form = Form.useForm()
+  const [form] = Form.useForm()
+
+  const [isExistUsername,setIsExistUsername] = useState(false)
+  const [isExistEmail,setIsExistEmail] = useState(false)
+
+  const handleUserNameExit = (userName) => {
+    setIsExistUsername(true)
+    Request.post("/user/isExitUserName",{
+      userName
+    }).then( (res) => {
+      setIsExistUsername(false)
+      if(res.data.isExit){
+        form.setFields([{
+          name:"username",
+          errors : ["Kullanıcı Adı Mevcut"]
+        }])
+      }
+    })
+  }
+
+  const handleEmailExit = (email) => {
+    setIsExistEmail(true)
+    Request.post("/user/setIsExistEmail",{
+      email
+    }).then( (res) => {
+      setIsExistEmail(false)
+      if(res.data.isExit){
+        form.setFields([{
+          name:"email",
+          errors : ["Email Mevcut"]
+        }])
+      }
+    })
+  }
+
+  const registerUser = () => {
+    Request.post("/user/signup/",{
+      name:form.getFieldValue("name"),
+      surname : form.getFieldValue("surname"),
+      user_name : form.getFieldValue("username"),
+      email : form.getFieldValue("email"),
+      password : form.getFieldValue("password"),
+    }).then((res) => {
+      if(res.data){
+        navigate("/auth/sign-in")
+      }
+    })
+  }
+
+
+  const handleValidate = () => {
+    form.setFields([
+      {
+        name:"name",
+        errors : form.getFieldValue("name") ? [] : ["Ad Giriniz !"]
+    },
+      {
+        name:"surname",
+        errors : form.getFieldValue("surname") ? [] : ["Soyad Giriniz !"]
+    },
+      {
+        name:"username",
+        errors : form.getFieldValue("username") ? [] : ["Kullanıcı Adı Giriniz !"]
+    },
+    {
+      name:"email",
+      errors : form.getFieldValue("email") ? [] : ["Email Giriniz !"]
+    },
+    {
+      name:"password",
+      errors : form.getFieldValue("password") ? [] : ["Parola Giriniz"]
+    }
+    ])
+    
+    const errors = form.getFieldError()
+    let isExitError = false ;
+    for (let i = 0; i < errors.length; i++) {
+
+      if(errors[i].errors.length > 0) {
+        isExitError = true;
+        break
+      }
+      isExitError = false;
+    }
+
+    if(!isExitError){
+      registerUser()
+    }
+
+}
+
+
+
 
 
   return (
@@ -19,7 +113,7 @@ const SignUp = () => {
 
       </div>
 {/* form={form} */}
-      <Form  layout="vertical" autoComplete='off' initialValues={{
+      <Form  layout="vertical" autoComplete='off' form={form} initialValues={{
         name: "",
         surname : "",
         username : "",
@@ -54,12 +148,12 @@ const SignUp = () => {
         <Row gutter={16}>
             <Col span={12}>
                 <Form.Item label="Kullanıcı Adı" required name="username" rules={[{required : true,message: "Lütfen Kullanıcı Adı Giriniz !"},{min:3,message:"Min 3 Karakter Giriniz"}]}  >
-                    <Input.Search placeholder='Kullanıcı Adı.' loading />
+                    <Input.Search onChange={(e) => {handleUserNameExit(e.target.value)}} placeholder='Kullanıcı Adı.' loading={isExistUsername} />
                 </Form.Item>
             </Col>
             <Col span={12}>
                 <Form.Item label="Email" required name="email" rules={[{required : true,type:"email",message: "Lütfen Geçerli Bir Email Giriniz !"}]}  >
-                    <Input.Search placeholder='Email' loading />
+                    <Input.Search onChange={(e) => {handleEmailExit(e.target.value)}} placeholder='Email' loading={isExistEmail} />
                 </Form.Item>
             </Col>
           </Row>
@@ -91,7 +185,7 @@ const SignUp = () => {
           </Row>
           <Row gutter={16}>
             <Col span={24}>
-                <Button className='w-full' type='primary' >Kayıt Ol !</Button>
+                <Button onClick={handleValidate} className='w-full' type='primary' >Kayıt Ol !</Button>
             </Col>
           </Row>
           <Row gutter={16}>
