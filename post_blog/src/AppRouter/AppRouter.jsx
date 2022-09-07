@@ -4,10 +4,11 @@ import SignIn from "../views/LoginPage/SignIn";
 import SignUp from "../views/LoginPage/SignUp";
 import Post from "../views/Post/Post";
 import PostCreate from "../views/Post/PostCreate/PostCreate";
-import {Routes,Route} from "react-router-dom"
+import {Routes,Route, Navigate} from "react-router-dom"
 import React from "react";
 import Auth from "../layout/Auth/Auth";
 import MainLayout from "../layout/Main/MainLayout";
+import { useSelector } from "react-redux";
 
 
 export const AppRoutes = [
@@ -51,6 +52,8 @@ export const AppRoutes = [
 
 const AppRouter = () => {
 
+  const {user} = useSelector((state) => state.auth)
+
   const renderComponent = (item,isSub) => {
 
     const protection = item.protect
@@ -60,6 +63,11 @@ const AppRouter = () => {
       }
       return <>{item.component}</>
     }
+
+    // if(!user){
+    //   return <Navigate to="/auth/sign-in" /> 
+    // }
+
     if(item.children){
       return <MainLayout>{item.component}</MainLayout>
     }
